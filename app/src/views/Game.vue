@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { StoryPage, StoryChoice, Effect } from '../models/types'
+import { StoryPage, StoryChoice, Effect, Character } from '../models/types'
 import StoryPanel from '../components/StoryPanel.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
+
 const testCharecter = {
     name: 'Test Character',
     stats: [
@@ -44,6 +45,7 @@ const testCharecter = {
         }
     ]
 }
+
 const testPage: StoryPage = {
     id: 1,
     title: 'Test Page',
@@ -71,8 +73,10 @@ const testPage: StoryPage = {
         }
     ]
 }
+
 const charStatsOpen = ref(false);
 const choice = ref({} as StoryChoice);
+const character = ref(testCharecter);
 
 
 function toggleCharStats() {
@@ -81,12 +85,13 @@ function toggleCharStats() {
 
 function setChoice(selection: StoryChoice) {
     choice.value = selection;
-    doEffect(selection.result);
+    doEffect(selection.result, character.value);
     // console.log(selection);
 }
 
-function doEffect(effect: Effect) {
-    testCharecter[effect.stat] += effect.value;
+function doEffect(effect: Effect, character: Character) {
+    const statIndex = character.stats.findIndex(stat => stat.name === effect.stat);
+    character.stats[statIndex].value += effect.value;
     console.log(effect);
 }
 onMounted(() => {
@@ -116,7 +121,7 @@ onMounted(() => {
 
         <div v-else>
 
-            <CharacterPanel :character="testCharecter" />
+            <CharacterPanel :character="character" />
             <!-- Character Stats -->
             <!-- Inventory -->
         </div>
