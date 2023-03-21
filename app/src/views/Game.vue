@@ -12,33 +12,26 @@ const choice = ref({} as StoryChoice);
 const charStatsOpen = ref(false);
 
 // Methods
-
 // Open and close the character stats panel
 function toggleCharStats() {
     charStatsOpen.value = !charStatsOpen.value;
 }
-
 // Set the selected choice in (Game State)
 function setSelectedChoice(choiceIndex: number) {
     choice.value = currentPage.value.choices[choiceIndex];
 }
-
 function gotoNextPage(storyPageId: number) {
     const index: number = activeStory.value.story.findIndex(page => page.id === storyPageId);
     currentPage.value = activeStory.value.story[index];
 }
-
-
 // Method to submit the selected choice
 function submitChoice() {
     doEffects(choice.value.result);
     gotoNextPage(choice.value.nextPage);
 }
-
 // Apply the effects of the selected choice
 function doEffects(effects: Effect[]) {
     const { character } = activeStory.value;
-
     // Loop through the effects of the selected choice
     effects.forEach(effect => {
         // the first if statement checks if the effect is health
@@ -97,10 +90,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.bottomBar {
-    @apply my-5;
-}
-
+/* this is here as an example  of applying tailwind classes to in one word */
 .btn {
     @apply bg-amber-500 rounded-full w-60
 }
