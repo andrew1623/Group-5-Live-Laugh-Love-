@@ -5,14 +5,6 @@ const testCharecter: Character = {
     health: { max: 100, current: 100 },
     stats: [
         {
-            name: 'maxHealth',
-            value: 100
-        },
-        {
-            name: 'health',
-            value: 100
-        },
-        {
             name: 'strength',
             value: 10
         },
@@ -33,7 +25,7 @@ const testCharecter: Character = {
             effect: [{ stat: 'health', value: 10 }]
         },
         {
-            name: 'Test Item ',
+            name: 'Test Item 2',
             description: 'This is a test item',
             quantity: 2,
             effect: [{ stat: 'health', value: 10 }]
@@ -101,4 +93,4 @@ const testStory: Story ={
     choiceHistory: [],
 } 
 
-export { testCharecter, testStory }
+export default testStory;

@@ -6,7 +6,7 @@ type Stats = {
     value: number,
 }
 
-// TODO: Implement this into character object
+// This is the object that contains the character health
 interface Health  {
     max: number,
     current: number, 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { Story, StoryChoice, Effect } from '../models/types'
-import { testStory, testCharecter } from '../models/testData'
+import { StoryChoice, Effect } from '../models/types'
+import testStory from '../models/testData'
 import StoryPanel from '../components/StoryPanel.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
 
@@ -16,19 +16,24 @@ const charStatsOpen = ref(false);
 function toggleCharStats() {
     charStatsOpen.value = !charStatsOpen.value;
 }
+
 // Set the selected choice in (Game State)
 function setSelectedChoice(choiceIndex: number) {
     choice.value = currentPage.value.choices[choiceIndex];
 }
+
+// Method to go to the next page in the story
 function gotoNextPage(storyPageId: number) {
     const index: number = activeStory.value.story.findIndex(page => page.id === storyPageId);
     currentPage.value = activeStory.value.story[index];
 }
+
 // Method to submit the selected choice
 function submitChoice() {
     doEffects(choice.value.result);
     gotoNextPage(choice.value.nextPage);
 }
+
 // Apply the effects of the selected choice
 function doEffects(effects: Effect[]) {
     const { character } = activeStory.value;
