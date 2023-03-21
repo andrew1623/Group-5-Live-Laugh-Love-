@@ -4,7 +4,7 @@ import { StoryPage, StoryChoice, Effect, Character } from '../models/types'
 import StoryPanel from '../components/StoryPanel.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
 
-const testCharecter = {
+const testCharecter: Character = {
     name: 'Test Character',
     stats: [
         {
@@ -29,19 +29,13 @@ const testCharecter = {
             name: 'Test Item',
             description: 'This is a test item',
             quantity: 1,
-            effect: {
-                stat: 'health',
-                value: 10
-            }
+            effect: [{ stat: 'health', value: 10 }]
         },
         {
             name: 'Test Item ',
             description: 'This is a test item',
             quantity: 2,
-            effect: {
-                stat: 'health',
-                value: 10
-            }
+            effect: [{ stat: 'health', value: 10 }]
         }
     ]
 }
@@ -54,22 +48,22 @@ const testPage: StoryPage = {
         {
             id: 1,
             text: 'lose  2 strength',
-            result: { stat: "strength", value: -2 }
+            result: [{ stat: "strength", value: -2 }]
         },
         {
             id: 2,
             text: 'lose 10 health',
-            result: { stat: "health", value: -10 }
+            result: [{ stat: "health", value: -10 }]
         },
         {
             id: 3,
             text: 'restore 10 health',
-            result: { stat: "health", value: 10 }
+            result: [{ stat: "health", value: 10 }]
         },
         {
             id: 4,
             text: 'gain 2 speed',
-            result: { stat: "speed", value: 2 }
+            result: [{ stat: "speed", value: 2 }]
         }
     ]
 }
@@ -83,17 +77,23 @@ function toggleCharStats() {
     charStatsOpen.value = !charStatsOpen.value;
 }
 
-function setChoice(selection: StoryChoice) {
-    choice.value = selection;
-    doEffect(selection.result, character.value);
-    // console.log(selection);
+function setSelectedChoice(choiceIndex: number) {
+    const selectedChoice: StoryChoice = testPage.choices[choiceIndex];
+    choice.value = selectedChoice;
 }
 
-function doEffect(effect: Effect, character: Character) {
-    const statIndex = character.stats.findIndex(stat => stat.name === effect.stat);
-    character.stats[statIndex].value += effect.value;
-    console.log(effect);
+function submitChoice() {
+    doEffects(choice.value.result);
 }
+
+function doEffects(effects: Effect[]) {
+    effects.forEach(effect => {
+        const statIndex = character.value.stats.findIndex(stat => stat.name === effect.stat);
+        character.value.stats[statIndex].value += effect.value;
+        console.log(effect);
+    });
+}
+
 onMounted(() => {
     console.log('Game mounted');
 });
@@ -108,10 +108,10 @@ onMounted(() => {
             <StoryPanel :page="testPage">
 
                 <!-- Choices -->
-                <ul class="text-m font-medium  ">
-                    <li v-for="choice in testPage.choices" class="w-full border border-black-200 rounded p-2">
+                <ul class="text-m font-medium w-1/2 mx-auto">
+                    <li v-for="({ text }, index) in testPage.choices" class="w-auto border border-black-200 rounded p-2">
                         <div class="flex items-center pl-3">
-                            <button @click="setChoice(choice)" :choice="choice">{{ choice.text }}</button>
+                            <button :key="index" @click="setSelectedChoice(index)">{{ text }}</button>
                         </div>
                     </li>
                 </ul>
@@ -120,17 +120,15 @@ onMounted(() => {
         </div>
 
         <div v-else>
-
+            <!-- Character Stats / Inventory -->
             <CharacterPanel :character="character" />
-            <!-- Character Stats -->
-            <!-- Inventory -->
         </div>
 
-        <div class="flex justify-between">
+        <div class="flex justify-between w-1/2 mx-auto">
             <button class="btn" @click="toggleCharStats">
-                {{ !charStatsOpen ? "Character" : "Exit" }}
+                {{ !charStatsOpen ? "Character" : "Close" }}
             </button>
-            <button class="btn">Save</button>
+            <button class="btn" @click="submitChoice">Submit</button>
         </div>
     </div>
 </template>

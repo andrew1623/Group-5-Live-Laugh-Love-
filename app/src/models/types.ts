@@ -6,20 +6,16 @@ type Stats = {
     value: number,
 }
 
-// This is the object that will modify the character stats
-// can be used by items or story choices
-type Effect = {stat: string, value: number}
-
 // This is the interface for the character object that is passed to the Story component
 interface Character {
     name: string,
     stats: Stats[],
-    health: number,
-    strength: number,
-    defense: number,
-    speed: number,
     inventory: Item[]
 }
+
+// This is the object that will modify the character stats
+// can be used by items or story choices
+type Effect = {stat: string, value: number}
 
 
 // This is the interface for the items that are in the characters inventory
@@ -27,14 +23,14 @@ interface Item {
     name: string,
     description: string,
     quantity: number,
-    effect: Effect,
+    effect: Effect[],
 }
 
 // This is the interface for the story choices that are passed to the Story component
 interface StoryChoice {
     id: number,
     text: string,
-    result: Effect,
+    result: Effect[],
 }
 
 // This is the interface for the story pages that are passed to the Story component

@@ -1,27 +1,16 @@
-<script lang="ts">
-import { StoryPage } from '../models/types'
-
-export default {
-    props: {
-        page: {
-            type: Object as () => StoryPage,
-            required: true
-        }
-    }
-}
+<script setup lang="ts">
+import { Story, StoryPage } from '../models/types'
+const props = defineProps<{ page: StoryPage }>();
 </script>
 
 <template>
-    <div :key="page.id">
+    <div :key="page.id" class="w-1/2 mx-auto my-2">
         <!-- Story Title -->
-        <h2 class="text-2xl mx-0 my-2">{{ page.title }}</h2>
-
+        <h2 class="text-2xl">{{ page.title }}</h2>
         <!-- Story Text -->
-        <p>
-            {{ page.text }}
-        </p>
+        <p> {{ page.text }} </p>
     </div>
 
-    <!-- choices go in the slot -->
+    <!-- choices go in the slot - as seen in view/Game.vue -->
     <slot />
 </template>

@@ -1,13 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import { Character } from '../models/types';
-export default {
-    props: {
-        character: {
-            type: Object as () => Character,
-            required: true
-        }
-    }
-}
+const props = defineProps<{ character: Character }>();
 </script>
 
 <template>
@@ -26,8 +19,10 @@ export default {
             <ul>
                 <li v-for=" item in character.inventory" :key="item.name">
                     {{ item.name }} x{{ item.quantity }}
+                    <!-- TODO: Add button to use/equip item -->
                 </li>
             </ul>
+
         </div>
     </section>
 </template>
