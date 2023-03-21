@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBar from './templates/NavBar.vue';
+import NavBar from './components/NavBar.vue';
   // Every view component has this template
   //   <script/> this is where any js or ts goes
   //   <template /> this is where the html is created and {{ variable }} is used to pass things from the script

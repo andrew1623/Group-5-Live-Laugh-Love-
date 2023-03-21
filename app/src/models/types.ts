@@ -9,14 +9,15 @@ type Stats = {
 // This is the interface for the character object that is passed to the Story component
 interface Character {
     name: string,
+    // fist stat is always maxHealth
     stats: Stats[],
-    inventory: Item[]
+    inventory: Item[],
+    equipped: Item[]
 }
 
 // This is the object that will modify the character stats
 // can be used by items or story choices
 type Effect = {stat: string, value: number}
-
 
 // This is the interface for the items that are in the characters inventory
 interface Item {

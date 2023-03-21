@@ -11,6 +11,11 @@
                     Start Game
                 </router-link>
             </button>
+            <button class="mx-auto my-4 text-lg bg-green-500 rounded-full py-2 px-4 shadow-lg border hover:bg-green-700">
+                <router-link to="Editor">
+                    Create Game
+                </router-link>
+            </button>
         </div>
     </section>
 </template>
