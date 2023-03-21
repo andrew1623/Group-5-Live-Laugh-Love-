@@ -1,6 +1,16 @@
 <script setup lang="ts">
-import { Story, StoryPage } from '../models/types'
+import { onUpdated } from 'vue';
+import { StoryPage } from '../models/types'
 const props = defineProps<{ page: StoryPage }>();
+
+onUpdated(() => {
+    /*
+        This is where the special effects (screen flash, sound effects, etc) will be added.
+        This function is called when the StoryPanel component is mounted with each StoryPage
+        TODO: add special effects
+    */
+    console.log('StoryPanel updated');
+})
 </script>
 
 <template>

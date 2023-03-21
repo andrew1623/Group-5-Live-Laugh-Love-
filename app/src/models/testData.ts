@@ -1,7 +1,8 @@
-import { Character, StoryPage } from "./types"
+import { Character, StoryPage, Story } from "./types"
 
 const testCharecter: Character = {
     name: 'Test Character',
+    health: { max: 100, current: 100 },
     stats: [
         {
             name: 'maxHealth',
@@ -41,32 +42,63 @@ const testCharecter: Character = {
     equipped: []
 }
 
-const testPage: StoryPage = {
+const testPages: StoryPage[] = [
+    {
     id: 1,
     title: 'Test Page',
     text: 'This is a test page',
-    choices: [
-        {
-            id: 1,
-            text: 'lose  2 strength',
-            result: [{ stat: "strength", value: -2 }]
-        },
-        {
-            id: 2,
-            text: 'lose 10 health',
-            result: [{ stat: "health", value: -10 }]
-        },
-        {
-            id: 3,
-            text: 'restore 10 health',
-            result: [{ stat: "health", value: 10 }]
-        },
-        {
-            id: 4,
-            text: 'gain 2 speed',
-            result: [{ stat: "speed", value: 2 }]
-        }
-    ]
-}
+    choices: [{
+                id: 1,
+                text: 'lose  2 strength',
+                result: [{ stat: "strength", value: -2 }],
+                nextPage: 2
 
-export { testCharecter, testPage }
+            },
+            {
+                id: 2,
+                text: 'lose 10 health',
+                result: [{ stat: "health", value: -10 }],
+                nextPage: 2
+            },
+            {
+                id: 3,
+                text: 'restore 10 health',
+                result: [{ stat: "health", value: 10 }],
+                nextPage: 2
+            },
+            {
+                id: 4,
+                text: 'gain 2 speed',
+                result: [{ stat: "speed", value: 2 }],
+                nextPage: 2
+            }]
+    },
+    {
+        id: 2,
+        title: 'Test Page 2',
+        text: 'Secondary page text for testing purposes',
+        choices: [
+            {
+                id: 1,
+                text: 'Gain more strength, but get hurt while training',
+                result: [{ stat: "strength", value: 20 }, { stat: "health", value: -10 }],
+                nextPage: 1
+            },
+            {
+                id: 2,
+                text: 'Run until you feel better.',
+                result: [{ stat: "health", value: 10 },{ stat: "speed", value: 10 }],
+                nextPage: 1
+            }
+        ]
+    }
+]
+
+const testStory: Story ={
+    storyId: 1,
+    story: testPages,
+    character: testCharecter,
+    choiceHistory: [],
+} 
+
+export { testCharecter, testStory }

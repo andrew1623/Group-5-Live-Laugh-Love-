@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { StoryChoice, Effect } from '../models/types'
-import { testPage, testCharecter } from '../models/testData'
+import { Story, StoryChoice, Effect } from '../models/types'
+import { testStory, testCharecter } from '../models/testData'
 import StoryPanel from '../components/StoryPanel.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
 
 // Game State
-const charStatsOpen = ref(false);
+const activeStory = ref(testStory);
+const currentPage = ref(testStory.story[0]);
 const choice = ref({} as StoryChoice);
-const character = ref(testCharecter);
+const charStatsOpen = ref(false);
 
 // Methods
+
 // Open and close the character stats panel
 function toggleCharStats() {
     charStatsOpen.value = !charStatsOpen.value;
@@ -18,24 +20,37 @@ function toggleCharStats() {
 
 // Set the selected choice in (Game State)
 function setSelectedChoice(choiceIndex: number) {
-    const selectedChoice: StoryChoice = testPage.choices[choiceIndex];
-    choice.value = selectedChoice;
+    choice.value = currentPage.value.choices[choiceIndex];
 }
 
+function gotoNextPage(storyPageId: number) {
+    const index: number = activeStory.value.story.findIndex(page => page.id === storyPageId);
+    currentPage.value = activeStory.value.story[index];
+}
+
+
 // Method to submit the selected choice
-// TODO: add a goto next page method
 function submitChoice() {
     doEffects(choice.value.result);
+    gotoNextPage(choice.value.nextPage);
 }
 
 // Apply the effects of the selected choice
 function doEffects(effects: Effect[]) {
+    const { character } = activeStory.value;
+
+    // Loop through the effects of the selected choice
     effects.forEach(effect => {
-        // statIndex is the index of the stat in the character stats array
-        const statIndex = character.value.stats.findIndex(stat => stat.name === effect.stat);
-        // this line adds the effect value to the stat value
-        character.value.stats[statIndex].value += effect.value;
-        // console.log(effect);
+        // the first if statement checks if the effect is health
+        if (effect.stat === 'health') {
+            // a ternary operator is used to check if the effect value will cause the health to go over the max health
+            (character.health.current + effect.value) >= character.health.max
+                ? character.health.current = character.health.max
+                : character.health.current += effect.value;
+        }
+        // After the health effect is checked, the rest of the effects are applied to the stats
+        const statIndex = character.stats.findIndex(stat => stat.name === effect.stat); // statIndex is the index of the stat in the character stats array
+        character.stats[statIndex].value += effect.value; // this line adds the effect value to the stat value
     });
 }
 
@@ -50,23 +65,23 @@ onMounted(() => {
 
         <!-- Story Panel-->
         <div v-if="!charStatsOpen">
-            <StoryPanel :page="testPage">
-
+            <StoryPanel :page="currentPage">
                 <!-- Choices -->
                 <ul class="text-m font-medium w-1/2 mx-auto">
-                    <li v-for="({ text }, index) in testPage.choices" class="w-auto border border-black-200 rounded p-2">
+                    <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
                         <div class="flex items-center pl-3">
-                            <button :key="index" @click="setSelectedChoice(index)">{{ text }}</button>
+                            <button :key="index" @click="setSelectedChoice(index)">
+                                {{ text }}
+                            </button>
                         </div>
                     </li>
                 </ul>
-
             </StoryPanel>
         </div>
 
         <!-- Character Stats / Inventory Panel -->
         <div v-else>
-            <CharacterPanel :character="character" />
+            <CharacterPanel :character="activeStory.character" />
         </div>
 
         <!-- Bottom Bar  (for buttons)-->
@@ -74,7 +89,9 @@ onMounted(() => {
             <button class="btn" @click="toggleCharStats">
                 {{ !charStatsOpen ? "Character" : "Close" }}
             </button>
-            <button class="btn" @click="submitChoice">Submit Choice</button>
+            <button class="btn" @click="submitChoice">
+                Submit Choice
+            </button>
         </div>
     </div>
 </template>
