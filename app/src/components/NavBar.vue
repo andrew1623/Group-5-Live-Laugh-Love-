@@ -1,36 +1,23 @@
 <template>
-    <div class="flex justify-between items-center  bg-blue-500 shadow border border-blue-700 p-2 m-0">
+    <div class="py-2">
+        <div class="container flex justify-between items-center mx-auto">
 
-        <router-link to="/" class="text-3xl  font-bold ">
-            Text Based Adventure
-        </router-link>
+            <router-link to="/" class="text-3xl  font-bold">
+                Text Based Adventure
+            </router-link>
 
-        <nav>
-            <button class="btn btn-blue">
-                <router-link class='text-black' to="/">
-                    Home
-                </router-link>
-            </button>
-            <button class="btn btn-blue">
-                <router-link class="text-black" to="game">
-                    New Game
-                </router-link>
-            </button>
-        </nav>
+            <nav class="flex justify-end gap-2 w-1/4">
+                <button class="btn">
+                    <router-link to="/"> Home </router-link>
+                </button>
+                <button class="btn">
+                    <router-link to="game"> New Game </router-link>
+                </button>
+                <button class="btn">
+                    <router-link to="editor">Login</router-link>
+                </button>
+            </nav>
 
+        </div>
     </div>
 </template>
-
-<style>
-.btn {
-    @apply font-bold py-2 px-4 rounded m-1;
-}
-
-.btn-blue {
-    @apply bg-teal-500 text-white;
-}
-
-.btn-blue:hover {
-    @apply bg-teal-700;
-}
-</style>

@@ -14,7 +14,7 @@ onUpdated(() => {
 </script>
 
 <template>
-    <div :key="page.id" class="w-1/2 mx-auto my-2">
+    <div :key="page.id" class="w-1/2 mx-auto bg-secondary">
         <!-- Story Title -->
         <h2 class="text-2xl">{{ page.title }}</h2>
         <!-- Story Text -->

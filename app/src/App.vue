@@ -7,11 +7,14 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <NavBar />
-  <main class="bg-blue-700  h-screen pt-5">
+  <div class="h-screen">
 
-    <router-view />
-  </main>
+    <NavBar />
+    <main>
+
+      <router-view />
+    </main>
+  </div>
 </template>
 
 <style scoped></style>
