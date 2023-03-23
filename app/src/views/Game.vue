@@ -1,36 +1,33 @@
 <template>
-    <div class="container mx-auto rounded bg-secondary  shadow">
+    <!-- Story Panel-->
+    <div v-if="!charStatsOpen">
+        <StoryPanel :page="currentPage">
+            <!-- Choices -->
+            <ul class="text-m  w-1/2 mx-auto">
+                <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
+                    <div class="flex items-center pl-3">
+                        <button :key="index" @click="setSelectedChoice(index)">
+                            {{ text }}
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </StoryPanel>
+    </div>
 
-        <!-- Story Panel-->
-        <div class="bg-secondary" v-if="!charStatsOpen">
-            <StoryPanel :page="currentPage">
-                <!-- Choices -->
-                <ul class="text-m  w-1/2 mx-auto">
-                    <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
-                        <div class="flex items-center pl-3">
-                            <button :key="index" @click="setSelectedChoice(index)">
-                                {{ text }}
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </StoryPanel>
-        </div>
+    <!-- Character Stats / Inventory Panel -->
+    <div v-else>
+        <CharacterPanel :character="activeStory.character" />
+    </div>
 
-        <!-- Character Stats / Inventory Panel -->
-        <div v-else>
-            <CharacterPanel :character="activeStory.character" />
-        </div>
-
-        <!-- Bottom Bar  (for buttons)-->
-        <div class="flex justify-between w-1/2 mx-auto">
-            <button class="btn" @click="toggleCharStats">
-                {{ !charStatsOpen ? "Character" : "Close" }}
-            </button>
-            <button class="btn" @click="submitChoice">
-                Submit Choice
-            </button>
-        </div>
+    <!-- Bottom Bar  (for buttons)-->
+    <div class="flex justify-between w-1/2 mx-auto">
+        <button class="btn" @click="toggleCharStats">
+            {{ !charStatsOpen ? "Character" : "Close" }}
+        </button>
+        <button class="btn" @click="submitChoice">
+            Submit Choice
+        </button>
     </div>
 </template>
 
