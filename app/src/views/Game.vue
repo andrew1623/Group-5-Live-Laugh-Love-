@@ -60,6 +60,7 @@ function gotoNextPage(storyPageId: number) {
 // Method to submit the selected choice
 function submitChoice() {
     doEffects(choice.value.result);
+    activeStory.value.choiceHistory.push(choice.value);
     gotoNextPage(choice.value.nextPage);
 }
 
@@ -74,8 +75,7 @@ function doEffects(effects: Effect[]) {
             (character.health.current + effect.value) >= character.health.max
                 ? character.health.current = character.health.max
                 : character.health.current += effect.value;
-        }
-        else {
+        } else {
             // After the health effect is checked, the rest of the effects are applied to the stats
             const statIndex = character.stats.findIndex(stat => stat.name === effect.stat); // statIndex is the index of the stat in the character stats array
             character.stats[statIndex].value += effect.value; // this line adds the effect value to the stat value

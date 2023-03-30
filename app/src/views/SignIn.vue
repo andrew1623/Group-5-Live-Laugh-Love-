@@ -1,5 +1,5 @@
 <template>
-    <div class="card mx-auto w-64 bg-secondary text-primary">
+    <div class="card mx-auto w-1/2 bg-secondary text-primary">
         <h2 class="card-title mx-auto text-2xl">
             {{
                 !creatingAccount
@@ -8,13 +8,21 @@
             }}
         </h2>
         <div class="card-body">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email" />
-            <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" />
+            <div class="form-control">
+                <label class="input-group" for="email">
+                    <span class="label-text">Email</span>
+                    <input type="email" placeholder="user@email.com" v-model="email" />
+                </label>
+            </div>
+            <div class="form-control">
+                <label class="input-group" for="password">
+                    <span class="label-text">Password</span>
+                    <input type="password" placeholder="password" v-model="password" />
+                </label>
+            </div>
             <button type="submit" @click="register">Log In</button>
+            <div v-if="error != ''" class=" bg-warning">{{ error }}</div>
         </div>
-        <div v-if="error != ''" class=" bg-warning">{{ error }}</div>
     </div>
 </template>
 

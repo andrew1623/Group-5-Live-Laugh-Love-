@@ -55,6 +55,8 @@ interface Story  {
     story: StoryPage[],
     choiceHistory: StoryChoice[],
     character: Character,
+    created: Date,
+    author: string,
 }
 
 // This is the interface for the story object that is saved to local storage

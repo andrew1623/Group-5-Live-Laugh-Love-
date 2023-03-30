@@ -11,6 +11,7 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home,
+        // useAuth: true
     },
     {
         path: '/game',
