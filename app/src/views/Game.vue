@@ -1,24 +1,20 @@
 <template>
     <!-- Story Panel-->
-    <div v-if="!charStatsOpen">
-        <StoryPanel :page="currentPage">
-            <!-- Choices -->
-            <ul class="text-m  w-1/2 mx-auto">
-                <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
-                    <div class="flex items-center pl-3">
-                        <button :key="index" @click="setSelectedChoice(index)">
-                            {{ text }}
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </StoryPanel>
-    </div>
+    <StoryPanel v-if="!charStatsOpen" :page="currentPage">
+        <!-- Choices -->
+        <ul class="text-m  w-1/2 mx-auto">
+            <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
+                <div class="flex items-center pl-3">
+                    <button :key="index" @click="setSelectedChoice(index)">
+                        {{ text }}
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </StoryPanel>
 
     <!-- Character Stats / Inventory Panel -->
-    <div v-else>
-        <CharacterPanel :character="activeStory.character" />
-    </div>
+    <CharacterPanel v-else :character="activeStory.character" />
 
     <!-- Bottom Bar  (for buttons)-->
     <div class="flex justify-between w-1/2 mx-auto">
@@ -79,9 +75,11 @@ function doEffects(effects: Effect[]) {
                 ? character.health.current = character.health.max
                 : character.health.current += effect.value;
         }
-        // After the health effect is checked, the rest of the effects are applied to the stats
-        const statIndex = character.stats.findIndex(stat => stat.name === effect.stat); // statIndex is the index of the stat in the character stats array
-        character.stats[statIndex].value += effect.value; // this line adds the effect value to the stat value
+        else {
+            // After the health effect is checked, the rest of the effects are applied to the stats
+            const statIndex = character.stats.findIndex(stat => stat.name === effect.stat); // statIndex is the index of the stat in the character stats array
+            character.stats[statIndex].value += effect.value; // this line adds the effect value to the stat value
+        }
     });
 }
 
