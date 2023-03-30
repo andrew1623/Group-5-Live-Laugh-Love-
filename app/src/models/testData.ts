@@ -91,6 +91,8 @@ const testStory: Story ={
     story: testPages,
     character: testCharecter,
     choiceHistory: [],
+    created: new Date(),
+    author: 'Test Author',
 } 
 
 export default testStory;

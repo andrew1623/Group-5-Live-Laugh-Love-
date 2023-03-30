@@ -21,7 +21,7 @@
         <button class="btn" @click="toggleCharStats">
             {{ !charStatsOpen ? "Character" : "Close" }}
         </button>
-        <button class="btn" @click="submitChoice">
+        <button class="btn btn-primary" @click="submitChoice">
             Submit Choice
         </button>
     </div>

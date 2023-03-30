@@ -20,7 +20,7 @@
                     <input type="password" placeholder="password" v-model="password" />
                 </label>
             </div>
-            <button type="submit" @click="register">Log In</button>
+            <button class="btn btn-primary" type="submit" @click="register">Log In</button>
             <div v-if="error != ''" class=" bg-warning">{{ error }}</div>
         </div>
     </div>
