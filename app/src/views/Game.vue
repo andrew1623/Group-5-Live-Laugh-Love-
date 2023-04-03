@@ -3,9 +3,9 @@
     <StoryPanel v-if="!charStatsOpen" :page="currentPage">
         <!-- Choices -->
         <ul class="text-m  w-1/2 mx-auto">
-            <li v-for="({ text }, index) in currentPage.choices" class="w-auto border border-black-200 rounded p-2">
+            <li v-for="({ text }, index) in currentPage.choices">
                 <div class="flex items-center pl-3">
-                    <button :key="index" @click="setSelectedChoice(index)">
+                    <button class="btn btn-info" :key="index" @click="setSelectedChoice(index)" >
                         {{ text }}
                     </button>
                 </div>
@@ -21,7 +21,7 @@
         <button class="btn" @click="toggleCharStats">
             {{ !charStatsOpen ? "Character" : "Close" }}
         </button>
-        <button class="btn" @click="submitChoice">
+        <button class="btn btn-primary" @click="submitChoice">
             Submit Choice
         </button>
     </div>

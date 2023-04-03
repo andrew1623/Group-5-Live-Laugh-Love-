@@ -242,7 +242,7 @@ const testStory: Story ={
     character: testCharacter,
     choiceHistory: [],
     created: new Date(2023,3,31),
-    author: "Jeremy Durflinger",
+    author: 'Test Author',
 } 
 
 export default testStory;
