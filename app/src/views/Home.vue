@@ -8,10 +8,11 @@
                 games. Try out our sample game, or get started on writing your own.
             </h2>
             <div class="btn-group btn-group-vertical  w-3/4 mx-auto my-3">
-                <button class="btn border-green-600 border-">
+                <button class="btn btn-info border-green-600 border-">
                     <router-link to="game"> Start Game </router-link>
                 </button>
-                <button class="btn  border-green-600">
+                <br/>
+                <button class="btn btn-primary border-green-600">
                     <router-link to="editor"> Create Game </router-link>
                 </button>
             </div>

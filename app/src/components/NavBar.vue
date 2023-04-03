@@ -4,6 +4,17 @@
             <router-link to="/" class="text-3xl  font-bold">
                 Text Based Adventure
             </router-link>
+            <div class="flex justify-start gap-2 w-1/4">
+                <button class="btn"> 
+                    Text-To-Speech
+                </button>
+                <button class="btn"> 
+                    Font Size
+                </button>
+                <button class="btn"> 
+                    Epileptic Effects
+                </button>
+            </div>
             <nav class="flex justify-end gap-2 w-1/4">
                 <button class="btn">
                     <router-link to="/"> Home </router-link>
@@ -15,9 +26,7 @@
                     <router-link to="editor">Create Game</router-link>
                 </button>
                 <button class="btn">
-                    <router-link to="SignIn">
-                        Log In
-                    </router-link>
+                    <router-link to="SignIn">Log In</router-link>
                 </button>
             </nav>
         </div>
