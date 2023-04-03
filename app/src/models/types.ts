@@ -38,6 +38,7 @@ interface StoryChoice {
     id: number,
     text: string,
     result: Effect[],
+    condition?: boolean,
     nextPage: number,
 }
 
