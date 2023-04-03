@@ -17,5 +17,6 @@ const draftStory = ref({
 <template>
     <div class="form-control mx-auto bg-secondary">
         <input type="text" name="title" placeholder="Title">
+        <!--<input type="text" name="description" placeholder="Description">-->
     </div>
 </template>

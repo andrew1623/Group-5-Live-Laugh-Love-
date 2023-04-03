@@ -33,6 +33,8 @@ import { StoryChoice, Effect } from '../models/types'
 import testStory from '../models/testData'
 import StoryPanel from '../components/StoryPanel.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
+import { TypesConfig } from 'vue-router';
+import { ChildProcess } from 'child_process';
 
 // Game State
 const activeStory = ref(testStory);
@@ -57,11 +59,30 @@ function gotoNextPage(storyPageId: number) {
     currentPage.value = activeStory.value.story[index];
 }
 
+// Method to see if a specific choice has a condition
+function conditionCheck() { 
+    if(choice.value.condition != undefined) {
+        if(choice.value.condition) { // Condition exist for this choice and is true.
+            return true;
+        } else { // Condition exists for this choice and is false. 
+            return false;
+        }
+    } else { // Condition doesn't exist for this choice.
+        return true;
+    }
+}
 // Method to submit the selected choice
 function submitChoice() {
-    doEffects(choice.value.result);
-    activeStory.value.choiceHistory.push(choice.value);
-    gotoNextPage(choice.value.nextPage);
+    // Choice HAS a condition and the condition is true OR Choice has NO condition.
+    if(conditionCheck()){
+        doEffects(choice.value.result);
+        activeStory.value.choiceHistory.push(choice.value);
+        gotoNextPage(choice.value.nextPage);
+    } else { // Choice HAS a condition and the condition is false
+        if(!choice.value.text.endsWith('\(Failed\)')){
+            choice.value.text = choice.value.text +'\(Failed\)';
+        }
+    }
 }
 
 // Apply the effects of the selected choice
