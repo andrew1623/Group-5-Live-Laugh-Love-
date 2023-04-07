@@ -20,12 +20,9 @@ onMounted(() => {
         <StoryPanel v-if="!store.charStatsOpen" :page="store.currentPage">
             <!-- Choices -->
             <ul class="flex flex-col justify-center text-m w-1/2 ">
-                <li v-for="({ text }, index) in store.currentPage.choices" class="px-auto py-1">
-                    <button v-if="index === store.choice.id" class="w-full btn btn-success"
+                <li v-for="({ text, isActive }, index) in store.currentPage.choices" class="px-auto py-1">
+                    <button :class="{ 'btn-success': isActive }" class="w-full btn"
                         @click="setSelectedChoice(index)">
-                        {{ text }}
-                    </button>
-                    <button v-else class="btn w-full" @click="setSelectedChoice(index)">
                         {{ text }}
                     </button>
                 </li>

@@ -37,6 +37,7 @@ interface Item {
 interface StoryChoice {
     id: number,
     text: string,
+    isActive?: boolean,
     result: Effect[],
     nextPage: number,
 }
@@ -47,6 +48,20 @@ interface StoryPage  {
     title: string,
     text: string,
     choices: StoryChoice[]
+}
+
+
+interface EnemyCharacter extends Character {
+}
+
+interface CombatPage {
+    id: number,
+    enemies: [] as EnemyCharacter[],
+}
+interface CombatChoice {
+    id: number,
+    text: string,
+    isActive?: boolean,
 }
 
 // This is the interface for the story object that is passed to the Story component
@@ -68,4 +83,4 @@ interface StorySave {
     character: Character,
 }
 
-export type { User, Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }
+export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }

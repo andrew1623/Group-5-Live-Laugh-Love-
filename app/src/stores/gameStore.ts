@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import { useCollection } from "vuefire";
 import { StoryPage, StoryChoice, Effect } from "../models/types";
 import testStory from "../models/testData"
 
@@ -11,11 +12,14 @@ export const useGameStore = defineStore('game', () => {
     const charStatsOpen = ref(false);
 
     // Methods
-    
-
     // Set the selected choice in (Game State)
     function setSelectedChoice(choiceIndex: number) {
+        // resets the currently highlighted choice
+        choice.value.isActive = false;
+        // sets the selected choice
         choice.value = currentPage.value.choices[choiceIndex];
+        // highlights the selected choice
+        choice.value.isActive = true;
     }
 
     // Method to go to the next page in the story

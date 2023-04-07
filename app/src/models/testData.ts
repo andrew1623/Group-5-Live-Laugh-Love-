@@ -43,14 +43,14 @@ const testPages: StoryPage[] = [
                 id: 0,
                 text: 'lose  2 strength',
                 result: [{ stat: "strength", value: -2 }],
-                nextPage: 2
+                nextPage: 2,
 
             },
             {
                 id: 1,
                 text: 'lose 10 health',
                 result: [{ stat: "health", value: -10 }],
-                nextPage: 2
+                nextPage: 2,
             },
             {
                 id: 2,
