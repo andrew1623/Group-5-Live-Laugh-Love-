@@ -68,4 +68,4 @@ interface StorySave {
     character: Character,
 }
 
-export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }
+export type { User, Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }

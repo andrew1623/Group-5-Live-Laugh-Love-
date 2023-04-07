@@ -4,15 +4,17 @@
             <h2 class="text-xl text-center  mx-auto pb-1">
                 <!-- TODO: this could be writtin better -->
                 Welcome to our app, where we aim to design the simplest way of creating and sharing accessible
-                story
-                games. Try out our sample game, or get started on writing your own.
+                story games. Try out our sample game, or get started on writing your own.
             </h2>
             <div class="btn-group btn-group-vertical  w-3/4 mx-auto my-3">
                 <button class="btn border-green-600 border-">
-                    <router-link to="game"> Start Game </router-link>
+                    <router-link to="signin">Log In</router-link>
                 </button>
                 <button class="btn  border-green-600">
-                    <router-link to="editor"> Create Game </router-link>
+                    <router-link to="editor">Sign Up</router-link>
+                </button>
+                <button>
+                    <router-link to="game">Continue as guest</router-link>
                 </button>
             </div>
         </div>

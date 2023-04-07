@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import { getAuth, signOut } from '@firebase/auth';
+
+const auth = getAuth();
+
+function signOutUser() {
+    signOut(auth)
+        .then(() => {
+            console.log('Signed Out');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+</script>
 <template>
     <div class="py-2">
         <div class="container flex justify-between items-center mx-auto">
@@ -14,11 +30,7 @@
                 <button class="btn">
                     <router-link to="editor">Create Game</router-link>
                 </button>
-                <button class="btn">
-                    <router-link to="SignIn">
-                        Log In
-                    </router-link>
-                </button>
+
             </nav>
         </div>
     </div>

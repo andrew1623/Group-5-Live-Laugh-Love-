@@ -1,31 +1,3 @@
-<template>
-    <div class="card mx-auto w-1/2 bg-secondary text-primary">
-        <h2 class="card-title mx-auto text-2xl">
-            {{
-                !creatingAccount
-                ? "Log In"
-                : "Create Account"
-            }}
-        </h2>
-        <div class="card-body">
-            <div class="form-control">
-                <label class="input-group" for="email">
-                    <span class="label-text">Email</span>
-                    <input type="email" placeholder="user@email.com" v-model="email" />
-                </label>
-            </div>
-            <div class="form-control">
-                <label class="input-group" for="password">
-                    <span class="label-text">Password</span>
-                    <input type="password" placeholder="password" v-model="password" />
-                </label>
-            </div>
-            <button class="btn btn-primary" type="submit" @click="register">Log In</button>
-            <div v-if="error != ''" class=" bg-warning">{{ error }}</div>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -51,3 +23,31 @@ const register = () => {
         });
 };
 </script>
+<template>
+    <div class="card mx-auto w-1/2 bg-secondary text-primary">
+        <h2 class="card-title mx-auto text-2xl">
+            {{
+                !creatingAccount
+                ? "Log In"
+                : "Create Account"
+            }}
+        </h2>
+        <div class="card-body">
+            <div class="form-control">
+                <label class="input-group" for="email">
+                    <span class="label-text"> Email </span>
+                    <input type="email" placeholder="user@email.com" v - model="email" />
+                </label>
+            </div>
+            <div class="form-control">
+                <label class="input-group" for="password">
+                    <span class="label-text"> Password </span>
+                    <input type="password" placeholder="password" v - model="password" />
+                </label>
+            </div>
+            <button class="btn btn-primary" type="submit" @click="register"> Log In </button>
+            <div div v-if="error != ''" class="text-xl bg-warning"> {{ error }}</div>
+        </div>
+    </div>
+</template>
+
