@@ -8,9 +8,9 @@ import {firebaseApp} from './db/firebase'
 import './style.css'
 
 const app = createApp(App);
+const pinia = createPinia();
 
 app.use(router);
-const pinia = createPinia();
 app.use(pinia);
 app.use(VueFire, {
     firebaseApp,

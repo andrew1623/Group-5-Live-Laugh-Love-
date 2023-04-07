@@ -50,20 +50,6 @@ interface StoryPage  {
     choices: StoryChoice[]
 }
 
-
-interface EnemyCharacter extends Character {
-}
-
-interface CombatPage {
-    id: number,
-    enemies: [] as EnemyCharacter[],
-}
-interface CombatChoice {
-    id: number,
-    text: string,
-    isActive?: boolean,
-}
-
 // This is the interface for the story object that is passed to the Story component
 interface Story  {
     storyId: number,
@@ -72,6 +58,10 @@ interface Story  {
     character: Character,
     created: Date,
     author: string,
+}
+
+interface StoryDraft extends Story {
+    lastModified: Date
 }
 
 // This is the interface for the story object that is saved to local storage
@@ -83,4 +73,10 @@ interface StorySave {
     character: Character,
 }
 
+interface User {
+    userId: number,
+    storyDrafts: StoryDraft[],
+    savedStories: StorySave[],
+    publishedStories: Story[],
+}
 export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }

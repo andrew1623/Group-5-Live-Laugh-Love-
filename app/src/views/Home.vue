@@ -7,7 +7,7 @@
                 story games. Try out our sample game, or get started on writing your own.
             </h2>
             <div class="btn-group btn-group-vertical  w-3/4 mx-auto my-3">
-                <button class="btn border-green-600 border-">
+                <button class="btn border-green-600 ">
                     <router-link to="signin">Log In</router-link>
                 </button>
                 <button class="btn  border-green-600">
