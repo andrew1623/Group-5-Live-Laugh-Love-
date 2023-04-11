@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFirebaseApp, useFirebaseAuth } from 'vuefire';
+// import { useFirebaseApp, useFirebaseAuth } from 'vuefire';
 import NavBar from './components/NavBar.vue';
 // Every vue component has this template
 //   fileName: "./ComponentName.vue"

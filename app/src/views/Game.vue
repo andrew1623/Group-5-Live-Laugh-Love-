@@ -33,7 +33,7 @@ onMounted(() => {
 
         <!-- Bottom Bar  (for buttons)-->
         <div class="flex justify-between w-1/2 mx-auto">
-            <button class="btn" @click="store.toggleCharStats()">
+            <button class="btn" @click="toggleCharStats()">
                 {{ !store.charStatsOpen ? "Character" : "Close" }}
             </button>
             <button class="btn btn-primary" @click="submitChoice">

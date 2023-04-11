@@ -1,8 +1,8 @@
-import {createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Home from '../views/Home.vue'
 import Game from '../views/Game.vue'
 import Editor from '../views/Editor.vue'
-import SignIn from '../views/SignIn.vue'
+import Registration from '../views/Registration.vue'
 
 // This file controls the routing of the App
 // see vue-router docs for more info
@@ -24,9 +24,9 @@ const routes = [
         component: Editor,
     },
     {
-        path: '/signin',
-        name: 'signin',
-        component: SignIn,
+        path: '/registration',
+        name: 'registration',
+        component: Registration,
     }
 ];
 

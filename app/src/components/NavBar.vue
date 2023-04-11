@@ -12,8 +12,8 @@ function signOutUser() {
             console.log(error);
         });
 }
-
 </script>
+
 <template>
     <div class="py-2">
         <div class="container flex justify-between items-center mx-auto">
@@ -21,15 +21,16 @@ function signOutUser() {
                 Text Based Adventure
             </router-link>
             <nav class="flex justify-end gap-2 w-1/4">
-                <button class="btn">
+                <span class="btn">
                     <router-link to="/"> Home </router-link>
-                </button>
-                <button class="btn">
+                </span>
+                <span class="btn">
                     <router-link to="game"> New Game </router-link>
-                </button>
-                <button class="btn">
+                </span>
+                <span class="btn">
                     <router-link to="editor">Create Game</router-link>
-                </button>
+                </span>
+                <button class="btn btn-warning" @click="signOutUser">Log Out</button>
 
             </nav>
         </div>

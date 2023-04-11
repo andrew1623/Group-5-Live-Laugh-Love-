@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import { useCollection } from "vuefire";
-import { StoryPage, StoryChoice, Effect } from "../models/types";
+import {Story, StoryPage, StoryChoice, Effect } from "../models/types";
 import testStory from "../models/testData"
 
 export const useGameStore = defineStore('game', () => {
@@ -12,6 +12,15 @@ export const useGameStore = defineStore('game', () => {
     const charStatsOpen = ref(false);
 
     // Methods
+    // Method to start a new game
+    function initNewGame(game: Story) {
+        // Set the state for the new game
+        activeStory.value = game;
+        currentPage.value = game.story[0];
+        choice.value = {} as StoryChoice;
+        charStatsOpen.value = false;
+    }
+
     // Set the selected choice in (Game State)
     function setSelectedChoice(choiceIndex: number) {
         // resets the currently highlighted choice
@@ -21,6 +30,7 @@ export const useGameStore = defineStore('game', () => {
         // highlights the selected choice
         choice.value.isActive = true;
     }
+
 
     // Method to go to the next page in the story
     function goToNextPage(storyPageId: number) {
@@ -64,13 +74,17 @@ export const useGameStore = defineStore('game', () => {
         charStatsOpen.value = !charStatsOpen.value;
     }
 
+    // Return the state and method to make them available to the app
+    // Public Methods = exported here
+    // Private/Internal Methods = not exported here
     return {
+        initNewGame,
         activeStory,
         currentPage,
         choice,
         charStatsOpen,
         toggleCharStats,
         setSelectedChoice,
-        submitChoice
+        submitChoice,
      }
 })

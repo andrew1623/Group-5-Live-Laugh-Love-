@@ -74,9 +74,11 @@ interface StorySave {
 }
 
 interface User {
-    userId: number,
-    storyDrafts: StoryDraft[],
-    savedStories: StorySave[],
-    publishedStories: Story[],
+    userId: string,
+    storyDrafts?: StoryDraft[],
+    savedStories?: StorySave[],
+    publishedStories?: Story[],
+    // favorites and reviews could be added here
 }
-export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }
+
+export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave, StoryDraft, User }

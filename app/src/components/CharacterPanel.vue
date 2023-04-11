@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Character } from '../models/types';
+import { Character } from '@/models/types';
 const props = defineProps<{ character: Character }>();
 const capitilizeLetters = (statName: string) => statName.charAt(0).toUpperCase() + statName.substring(1);
 </script>
