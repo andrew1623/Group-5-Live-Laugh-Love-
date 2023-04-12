@@ -37,6 +37,7 @@ interface Item {
 interface StoryChoice {
     id: number,
     text: string,
+    isActive?: boolean,
     result: Effect[],
     condition?: boolean,
     nextPage: number,
@@ -60,6 +61,10 @@ interface Story  {
     author: string,
 }
 
+interface StoryDraft extends Story {
+    lastModified: Date
+}
+
 // This is the interface for the story object that is saved to local storage
 interface StorySave {
     saveId: number,
@@ -69,4 +74,12 @@ interface StorySave {
     character: Character,
 }
 
-export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave }
+interface User {
+    userId: string,
+    storyDrafts?: StoryDraft[],
+    savedStories?: StorySave[],
+    publishedStories?: Story[],
+    // favorites and reviews could be added here
+}
+
+export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave, StoryDraft, User }
