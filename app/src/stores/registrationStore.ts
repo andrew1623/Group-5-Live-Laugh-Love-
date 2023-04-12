@@ -23,7 +23,6 @@ export const useRegistrationStore = defineStore('registration', () => {
         name.value = '';
         password.value = '';
         confirmPassword.value = '';
-        creatingAccount.value = false;
         hasError.value = false;
         err.value = {
             code: '',
@@ -31,7 +30,7 @@ export const useRegistrationStore = defineStore('registration', () => {
         }
     }
     // Computed
-    const passwordIsConfirmed = computed(() => password.value === confirmPassword.value);
+    const passwordIsConfirmed = computed(() => (password.value === confirmPassword.value) && (password.value !== ''));
 
     // Firebase Auth instance
     const auth = getAuth();

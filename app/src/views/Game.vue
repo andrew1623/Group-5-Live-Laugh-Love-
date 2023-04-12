@@ -45,21 +45,4 @@ onMounted(() => {
     </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-
-import { useGameStore } from '../stores/gameStore';
-import StoryPanel from '../components/StoryPanel.vue'
-import CharacterPanel from '../components/CharacterPanel.vue'
-
-const store = useGameStore();
-const { toggleCharStats, setSelectedChoice, submitChoice } = store;
-
-// Lifecycle Hooks
-onMounted(() => {
-    console.log('Game mounted');
-});
-</script>
-
-
 

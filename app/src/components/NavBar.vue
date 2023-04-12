@@ -3,6 +3,7 @@ import { getAuth, signOut } from '@firebase/auth';
 
 const auth = getAuth();
 
+
 function signOutUser() {
     signOut(auth)
         .then(() => {
@@ -12,6 +13,7 @@ function signOutUser() {
             console.log(error);
         });
 }
+
 </script>
 
 <template>
@@ -20,6 +22,7 @@ function signOutUser() {
             <router-link to="/" class="text-3xl  font-bold">
                 Text Based Adventure
             </router-link>
+            <!-- This could be made into a collapsible menu -->
             <div class="flex justify-start gap-2 w-1/4">
                 <button class="btn">
                     Text-To-Speech
@@ -41,10 +44,7 @@ function signOutUser() {
                 <span class="btn">
                     <router-link to="editor">Create Game</router-link>
                 </span>
-                <button class="btn btn-warning" @click="signOutUser">Log Out</button>
-                <button class="btn">
-                    <router-link to="SignIn">Log In</router-link>
-                </button>
+                <button v-if="auth.currentUser !== null" class="btn btn-warning" @click="signOutUser">Log Out</button>
             </nav>
         </div>
     </div>
