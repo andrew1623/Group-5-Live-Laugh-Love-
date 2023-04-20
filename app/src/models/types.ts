@@ -57,6 +57,8 @@ interface Story  {
     story: StoryPage[],
     choiceHistory: StoryChoice[],
     character: Character,
+    title: string,
+    description: string,
     created: Date,
     author: string,
 }
@@ -82,4 +84,4 @@ interface User {
     // favorites and reviews could be added here
 }
 
-export type { Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave, StoryDraft, User }
+export type {Stats, Health, Character, Effect, Item, StoryChoice, StoryPage, Story, StorySave, StoryDraft, User }
