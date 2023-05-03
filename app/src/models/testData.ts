@@ -198,7 +198,7 @@ const testPages: StoryPage[] = [
     {
         id: 9,
         title: 'Emeralia Marketplace',
-        text: 'A guard from before approaches you. \"Thanks for helping uphold some orde, even as a civilian. You got the chops for the Selection Trials\"\nHe hands you an invitation to the Selection Trials.',
+        text: 'A guard from before approaches you. \"Thanks for helping uphold some order, even as a civilian. You got the chops for the Selection Trials\"\nHe hands you an invitation to the Selection Trials.',
         choices: [
             {
                 id: 1,
@@ -241,8 +241,10 @@ const testStory: Story ={
     story: testPages,
     character: testCharacter,
     choiceHistory: [],
+    title: 'Emeralia Heigthts',
+    description: 'Face the dangers found in the walls of Emeralia!',
     created: new Date(2023,3,31),
-    author: 'Test Author',
+    author: 'Testathon Authorington',
 } 
 
 export default testStory;
